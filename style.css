@@ -48,6 +48,9 @@ td{
 	text-align: left;
 	color: #282923;
 }
+tr{
+	margin-bottom: 10px;
+}
 .btn{	
 
 	height: 55px;
