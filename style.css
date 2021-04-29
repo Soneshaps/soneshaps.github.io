@@ -47,6 +47,7 @@ td{
 	font-weight: bold;
 	text-align: left;
 	color: #282923;
+	padding: 10px;
 }
 tr{
 	margin-bottom: 10px;
@@ -70,7 +71,7 @@ tr{
 }
 
 .code{
-	background-color:#163a4a;
+	background-color:#2d0c0c;
 }
 .demo{
 	background-color:#203648;
