@@ -150,8 +150,18 @@ a{
     height: 80px;
     font-size: 15px;
     cursor: pointer;
+    position: relative;
 }
 
+.table-body-wrapper:hover{
+    z-index: 99;
+    -webkit-box-shadow: 0px 3px 10px -5px #000000; 
+    box-shadow: 0px 3px 10px -5px #000000;
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+}
 
 
 .table-body-item{
@@ -161,7 +171,10 @@ a{
     align-items: center;
     background-color: #ffffff;
     position: relative;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
 }
 
 .table-body-item:first-child{
@@ -281,10 +294,10 @@ a{
     background-color: #e4ddf5;
     color: #5b2ce0;
     transition: all 0.3 ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .view-button:hover{
