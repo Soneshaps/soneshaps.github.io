@@ -1,9 +1,8 @@
-function Carousel(){
+function Carousel(container , holdTime = 3000 , transitionTime = 10){
     let carousel = this ;
+    this.container = container
 
-
-    this.container = document.querySelector(".carousel-container");
-    this.wrapper = document.querySelector(".carousel-image-wrapper");
+    this.wrapper = this.container.querySelector(".carousel-image-wrapper");
     this.images = this.wrapper.getElementsByTagName("img");
 
     //Styling Container
@@ -74,7 +73,7 @@ function Carousel(){
     this.rightButton.appendChild(this.rightButtonImg);
 
     for (let i=0; i<this.images.length; i++){
-        this.images[i].style.width = this.container.clientWidth+'px';
+        this.images[i].style.width = carousel.container.clientWidth+'px';
         this.images[i].style.height = '100%'
         this.images[i].style.float = 'left';
     }
@@ -128,6 +127,8 @@ function Carousel(){
     let previousPosition = 0
     this.previousBullet = 0   
     this.goRight = function(){
+        clearInterval(carousel.automatic)
+        clearInterval(carousel.animateInterval)
          previousPosition = carousel.newPosition
          carousel.initalPosition = carousel.newPosition
          carousel.buttonStatus = 'right'
@@ -135,6 +136,8 @@ function Carousel(){
     }
 
     this.goLeft = function(){
+        clearInterval(carousel.automatic)
+        clearInterval(carousel.animateInterval)
         previousPosition = carousel.newPosition
         carousel.initalPosition = carousel.newPosition
         carousel.buttonStatus = 'left'
@@ -142,6 +145,8 @@ function Carousel(){
     }
 
     this.goTo = function(page){
+        clearInterval(carousel.automatic)
+        clearInterval(carousel.animateInterval)
         previousPosition = carousel.newPosition
         carousel.pageIndex = page 
         carousel.pageStatus = page*carousel.container.clientWidth
@@ -199,48 +204,65 @@ function Carousel(){
         carousel.animate();
     }
 
+    this.automaticSlide = function(){
+        carousel.automatic = setInterval(function(){
+            carousel.goRight()
 
-
+        },holdTime)
+    }
+    this.automaticSlide()
 
     this.animate = function(){
         let dx = 0
         let temPosition;
-        let animateInterval
+        carousel.animateInterval
             if(carousel.buttonStatus === "right"){
-                 animateInterval = setInterval(function(){
+                carousel.animateInterval = setInterval(function(){
                     if(temPosition === carousel.newPosition){
-                        clearInterval(animateInterval)
+                        clearInterval(carousel.animateInterval)
                     }
                     if(carousel.newPosition === 0){
                         carousel.wrapper.style.left = -(temPosition)+'px'
                         temPosition = previousPosition - dx
-                        dx += 100
+                        dx += transitionTime
                     }else{
                         carousel.wrapper.style.left = -(temPosition)+'px'
                         temPosition = previousPosition + dx
-                        dx += 100
+                        dx += transitionTime
                     }
-                }, 200);
+                }, 4);
             }
             if(carousel.buttonStatus === "left"){
-                 animateInterval = setInterval(function(){
+                carousel.animateInterval = setInterval(function(){
                     if(temPosition === carousel.newPosition){
-                        clearInterval(animateInterval)
+                        clearInterval(carousel.animateInterval)
                     }
                     if(carousel.newPosition === carousel.maxWidth){
                         carousel.wrapper.style.left = -(temPosition)+'px'
                         temPosition = previousPosition + dx
-                        dx += 100
+                        dx += transitionTime
                     }else{
                         carousel.wrapper.style.left = -(temPosition)+'px'
                         temPosition = previousPosition - dx
-                        dx += 100
+                        dx += transitionTime
                     }
-                }, 200);
+                }, 4);
             }     
+            this.automaticSlide()    
         carousel.bulletStatus(carousel.newPosition)    
     }
 
 }
 
-var carouselWidow = new Carousel();
+var containerOne = document.getElementById("carousel-container-one");
+carouselWindow= new Carousel(containerOne , 3000 , 4)
+var containerTwo = document.getElementById("carousel-container-two");
+carouselWindow= new Carousel(containerTwo , 5000 , 10)
+var containerThree = document.getElementById("carousel-container-three");
+carouselWindow= new Carousel(containerThree , 2000 , 20)
+var containerFour = document.getElementById("carousel-container-four");
+carouselWindow= new Carousel(containerFour , 1500 , 15)
+
+
+
+

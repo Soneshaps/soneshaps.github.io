@@ -1,9 +1,22 @@
-.carousel-container{
+.main-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.carousel-container-top{
+    height: 400px;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.carousel-container-bottom{
     height: 400px;
     width: 600px;
     margin: 0 auto;
-    /* overflow: hidden; */
 }
+
+
 
 .clearfix::after {
     content: "";
