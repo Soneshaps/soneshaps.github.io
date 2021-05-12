@@ -20,13 +20,13 @@ function Ball(container,color){
             if (this.x > (1000 - this.radius*2)){
               this.dx = -Math.abs(this.dx);
             }
-            if (this.x < 0){
+            if ((this.x-(this.radius*2)) < 0){
               this.dx = Math.abs(this.dx);
             }
             if (this.y > (600 - this.radius*2)){
               this.dy = -Math.abs(this.dy);
             }
-            if (this.y < 0){
+            if ((this.y-(this.radius*2)) < 0){
               this.dy = Math.abs(this.dy);
             }
         }.bind(this)
