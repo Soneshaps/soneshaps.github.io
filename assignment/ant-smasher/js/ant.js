@@ -1,18 +1,17 @@
-function Ball(container,color){
+function Ant(container){
         this.container = container
         this.radius = 20;
         this.x = Math.floor(Math.random() * (1000 - (2 * this.radius)));
         this.y = Math.floor(Math.random() * (600 - (2 * this.radius)));
         this.dy = Math.floor(Math.random() * 3)+1;
         this.dx = Math.floor(Math.random() * 3)+1;
-        this.color = color;
-        this.ball = container.getContext("2d")
+        this.ant = container.getContext("2d")
     
 
         this.draw = function(){
           let ant = new Image();
           ant.src = './images/ant.png';
-          this.ball.drawImage(ant, this.x, this.y, this.radius*1.8, this.radius*1.8);
+          this.ant.drawImage(ant, this.x, this.y, this.radius*1.8, this.radius*1.8);
         }.bind(this)
 
         this.borderCollisionFunction = function() {
@@ -28,10 +27,6 @@ function Ball(container,color){
             if (this.y < 0){
               this.dy = Math.abs(this.dy);
             }
-        }.bind(this)
-
-        this.antContext=function(){
-          return this.ball
         }.bind(this)
 
         this.setDirection=function(dxNew, dyNew){
@@ -61,9 +56,9 @@ function Ball(container,color){
 }
 
 var canvas = document.querySelector("canvas");
-let ballNo = 10
-let balls = []
-var ball
+let antNo = 10
+let ants = []
+var ant
 
 function genrateRandomColor(){
     color = '#';
@@ -72,16 +67,16 @@ function genrateRandomColor(){
     return(color)
 }
 
-function handleBallCollision(){
-    for (i = 0; i < ballNo; i++){
-      for (j = i; j < ballNo; j++){
+function handleAntCollision(){
+    for (i = 0; i < antNo; i++){
+      for (j = i; j < antNo; j++){
         if (i !== j){
-          if(detectCollision(balls[i].position(), balls[j].position()))
+          if(detectCollision(ants[i].position(), ants[j].position()))
           {
-            let tempI = balls[i].direction();
-            let tempJ = balls[j].direction();
-            balls[i].setDirection(tempJ[0], tempJ[1]);
-            balls[j].setDirection(tempI[0], tempI[1]);
+            let tempI = ants[i].direction();
+            let tempJ = ants[j].direction();
+            ants[i].setDirection(tempJ[0], tempJ[1]);
+            ants[j].setDirection(tempI[0], tempI[1]);
           }
         }
       }
@@ -99,20 +94,20 @@ function detectCollision(circle1, circle2){
 }
 
 
-for (let i = 0; i < ballNo; i++){ 
+for (let i = 0; i < antNo; i++){ 
     overlap = false;
     do{
       overlap = false;
-       ball =  new Ball(canvas, genrateRandomColor(),i);
+       ant =  new Ant(canvas);
       for (let j = 0; j < i; j++)
-        if (detectCollision(ball, balls[j])){
+        if (detectCollision(ant, ants[j])){
           overlap = true;
           break;  
         }
     }while(overlap)
-    ball.draw();
+    ant.draw();
 
-    balls.push(ball);
+    ants.push(ant);
 }  
 
 
@@ -121,15 +116,13 @@ for (let i = 0; i < ballNo; i++){
   canvas.addEventListener('click',function(event){
     var x = event.pageX ;
     var y = event.pageY ;
-    balls.forEach(function(element) {
+    ants.forEach(function(element) {
       var dx = element.x - x 
       var dy = element.y - y
       var distance = Math.sqrt(dx * dx + dy * dy);
       if (distance < 40+40 ) {
-        balls = balls.filter(item => item !== element);
-        ballNo -= 1 
-        se
-      }
+        ants = ants.filter(item => item !== element);
+        antNo -= 1       }
  
   });
   })
@@ -139,14 +132,14 @@ for (let i = 0; i < ballNo; i++){
 
 
 
-function run(){
-    ball.ball.clearRect(0, 0, 1000, 600);
-    for (i = 0; i < ballNo; i++){ 
-      balls[i].move();
-      balls[i].borderCollisionFunction()
+function animate(){
+    ant.ant.clearRect(0, 0, 1000, 600);
+    for (i = 0; i < antNo; i++){ 
+      ants[i].move();
+      ants[i].borderCollisionFunction()
 
     }
-    handleBallCollision()
-    requestAnimationFrame(run);
+    handleAntCollision()
+    requestAnimationFrame(animate);
   }
-  run();
+  animate();
