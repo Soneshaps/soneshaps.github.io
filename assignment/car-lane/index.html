@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class = 'container'>
+        <canvas id ='canvas'  width="450" height="650"></canvas>
+        <div class="high-score"></div>
+        <div id = 'overlay'>
+          <div class = 'home-screen'>
+            <img class="instruction" src="images/instruction.png"> 
+            <div class="play-button">PLAY</div>
+          </div>
+          <div class = 'score-board'>Score :</div>
+          <div class = "try-again">
+            <img class = "you-crashed" src="images/crashed.png">
+            <div class = 'player-score'></div>
+            <div class = "try-again-button">TRY AGAIN</div>
+          </div>
+        </div>
+      </div>
+      <script src="js/canvas.js"></script>
+      <script src="js/playerCar.js"></script>
+      <script src="js/car.js"></script>
+      <script src="js/game.js"></script>
+</body>
+</html>
