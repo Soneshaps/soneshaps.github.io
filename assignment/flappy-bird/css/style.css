@@ -1,5 +1,10 @@
+@font-face {
+    font-family: flappy-bird;
+    src: url("../font/Flappy-Bird.ttf");
+}
 body{
     background-color: #ebebeb;
+    font-family: flappy-bird;
 }
 *{
     margin: 0;

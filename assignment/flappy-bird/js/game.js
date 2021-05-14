@@ -54,7 +54,7 @@ class Game{
         if(score > highScore){
             highScore = score;
             localStorage.setItem('highScore', highScore)
-          }
+        }
         // If game is over
         if(this.gameState === 2){
             let position = {sX : 175,
@@ -63,12 +63,12 @@ class Game{
                 h : 170,
                 x : cnvWidth/2 - 225/2,
                 y : 90}
-              this.context.drawImage(sprite, position.sX, position.sY, position.w, position.h, position.x, position.y, position.w, position.h);
-              this.context.fillStyle = "#FFF";
-              this.context.strokeStyle = "#000";
-              this.context.font = "25px arial";
-              this.context.fillText(score, 225, 185);
-              this.context.fillText(highScore, 220, 228);                   
+                this.context.drawImage(sprite, position.sX, position.sY, position.w, position.h, position.x, position.y, position.w, position.h);
+                this.context.fillStyle = "#FFF";
+                this.context.strokeStyle = "#000";
+                this.context.font = "25px arial";
+                this.context.fillText(score, 225, 185);
+                this.context.fillText(highScore, 220, 228);                   
         }
     }
 
@@ -86,7 +86,7 @@ class Game{
     displayScore(){
         this.context.fillStyle = "#FFF";
         this.context.strokeStyle = "#000";
-        this.context.font = "35px Arial";
+        this.context.font = "50px flappy-bird";
         this.context.lineWidth = 1;
         this.context.fillText(score, cnvWidth/2, 50);
         this.context.strokeText(score, cnvWidth/2, 50);
@@ -127,13 +127,13 @@ document.addEventListener('keydown',function(event){
 canvas.addEventListener("click", function(evt){
     switch(game.gameState){
         case 0:
-            game.gameState = 1;
+            game.gameState = 1; //Main Menu to Game On
             break;
         case 1:
-            game.bird.jump();
+            game.bird.jump(); // Game one and click to Jump 
             break;
         case 2:
-            game.gameState = 0;
+            game.gameState = 0; //Game Over To Game State 1 
             game.bird.y = 137;
             game.bird.speed = 0; 
             game.pipes.position = [];
@@ -141,7 +141,8 @@ canvas.addEventListener("click", function(evt){
             break;
     }
 });
-
+ 
+//Running The Game ! 
 function run(){
     game.update()
     game.gameOver()

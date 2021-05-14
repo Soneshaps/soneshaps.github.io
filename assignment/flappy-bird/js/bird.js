@@ -20,10 +20,10 @@ class Bird{
     update(ctx){
         let bird = this.animationPositionList[this.tick];
         ctx.drawImage(sprite, bird.sX, bird.sY, this.width, this.height, this.x, this.y, this.width, this.height);
-      if(game.gameState === 1){
-        this.speed += this.gravity;
-        this.y += this.speed;
-      }
+        if(game.gameState === 1){
+            this.speed += this.gravity;
+            this.y += this.speed;
+        }
   
   
     }
