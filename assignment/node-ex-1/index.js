@@ -1,33 +1,13 @@
-const fs = require("fs");
+const fileSystem = require("./fs");
 
-fs.readFile("file.txt", "utf-8", function (err, data) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log(data);
-});
+//reading a file
+fileSystem.readFile("file.txt");
 
-fs.appendFile("file.txt", " !!!!", function (err) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log("Text Appended");
-});
+//writing text to a new file
+fileSystem.writeFile("extra.txt", "Hello Hello!");
 
-fs.writeFile("extra.txt", "Hello Extra World", "utf8", function (err) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log("Extra File Created!");
-});
+//appending text to file.txt
+fileSystem.appendFile("file.txt", " !!!!");
 
-fs.unlink("extra.txt", function (err) {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log("File Deleted!");
-});
+//deleting extra.txt file
+fileSystem.deleteFile("extra.txt");
