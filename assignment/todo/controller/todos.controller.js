@@ -2,8 +2,9 @@ const Todos = require("../model/todos.service");
 
 async function createTodos(req, res, next) {
   try {
-    const { title, description, status } = req.body;
+    const { collection, title, description, status } = req.body;
     const todos = await Todos.forge({
+      collection,
       title,
       description,
       status,
@@ -31,7 +32,7 @@ async function listTodos(req, res, next) {
   try {
     const todos = await Todos.where({ user: req.user.id })
       .fetchAll({
-        columns: ["id", "title", "description", "status", "user"],
+        columns: ["id", "collection", "title", "description", "status", "user"],
         require: false,
       })
       .then((data) => {
